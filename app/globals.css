@@ -1065,14 +1065,15 @@ dd {
   left: 52%;
   width: 2px;
   height: 530px;
-  background: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(169, 227, 235, 0.86), rgba(255, 255, 255, 0.92));
+  box-shadow: -12px 0 30px rgba(169, 227, 235, 0.28);
   transform: translateX(-50%);
   transition: left 1.1s cubic-bezier(0.2, 0.76, 0.28, 1);
 }
 
 .wipe-comparison:hover .wipe-comparison__handle,
 .wipe-comparison:focus .wipe-comparison__handle {
-  left: calc(100% - 22px);
+  left: calc(100% - 70px);
 }
 
 .wipe-comparison__handle i {
@@ -1082,15 +1083,23 @@ dd {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 54px;
-  height: 54px;
-  color: var(--ink);
-  background: var(--white);
-  border-radius: 50%;
-  font-size: 21px;
+  width: 154px;
+  height: 154px;
   font-style: normal;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 8px 24px rgba(35, 75, 72, 0.18);
+  transform: translate(-50%, -50%) rotate(-8deg);
+  transition: transform 1.1s cubic-bezier(0.2, 0.76, 0.28, 1);
+  filter: drop-shadow(0 12px 20px rgba(35, 75, 72, 0.2));
+}
+
+.wipe-comparison:hover .wipe-comparison__handle i,
+.wipe-comparison:focus .wipe-comparison__handle i {
+  transform: translate(-50%, -50%) rotate(5deg) scale(1.03);
+}
+
+.wipe-comparison__handle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .wipe-comparison__guide {
@@ -2247,8 +2256,8 @@ dd {
   }
 
   .wipe-comparison__handle i {
-    width: 46px;
-    height: 46px;
+    width: 112px;
+    height: 112px;
   }
 
   .wipe-comparison__guide {

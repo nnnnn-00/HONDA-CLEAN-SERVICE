@@ -217,8 +217,10 @@ export default function Home() {
             />
             <figcaption>AFTER</figcaption>
           </figure>
-          <span className="wipe-comparison__handle" aria-hidden="true"><i>→</i></span>
-          <p className="wipe-comparison__guide">写真に触れると、拭き上げるように仕上がりが現れます。</p>
+          <span className="wipe-comparison__handle" aria-hidden="true">
+            <i><img src="/wipe-hand.png" alt="" /></i>
+          </span>
+          <p className="wipe-comparison__guide">写真に触れると、布で拭くように仕上がりが現れます。</p>
           <p className="comparison__note">公開時は、同じ画角で撮影した実際の施工写真へ差し替えます。</p>
         </div>
       </section>
