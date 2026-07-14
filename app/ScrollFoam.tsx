@@ -18,6 +18,7 @@ const bubbles = Array.from({ length: 64 }, (_, index) => {
     duration: 3.55 + ((index * 29) % 12) * 0.085,
     drift,
     driftMid: drift * 0.55,
+    hue: -14 + ((index * 23) % 29),
   };
 });
 
@@ -55,8 +56,8 @@ export default function ScrollFoam() {
     const measure = () => {
       const triggerTop = trigger.getBoundingClientRect().top + window.scrollY;
 
-      start = Math.max(0, triggerTop - window.innerHeight * 0.72);
-      end = triggerTop + window.innerHeight * 0.52;
+      start = Math.max(0, triggerTop - window.innerHeight * 0.18);
+      end = triggerTop + trigger.offsetHeight - window.innerHeight * 1.05;
       scheduleRender();
     };
 
@@ -91,6 +92,7 @@ export default function ScrollFoam() {
                 "--bubble-duration": `${bubble.duration}s`,
                 "--bubble-drift": `${bubble.drift}px`,
                 "--bubble-drift-mid": `${bubble.driftMid}px`,
+                "--bubble-hue": `${bubble.hue}deg`,
               } as CSSProperties}
             />
           ))}
