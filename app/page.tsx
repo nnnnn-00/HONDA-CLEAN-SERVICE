@@ -98,6 +98,11 @@ export default function Home() {
           <p className="hero__service">福岡の暮らしに、顔の見える安心を。<br />入退去清掃・定期清掃・エアコン取付／清掃</p>
         </div>
 
+        <div className="hero-scroll" aria-hidden="true">
+          <span>SCROLL TO CLEAN</span>
+          <i />
+        </div>
+
         <div className="hero-wave" aria-hidden="true">
           <span className="hero-wave__large" />
           <span className="hero-wave__small" />
@@ -145,6 +150,13 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="cleaning-marquee" aria-hidden="true">
+        <div className="cleaning-marquee__track">
+          <span>CLEAN SPACE</span><i>/</i><span>CLEAR AIR</span><i>/</i><span>GOOD DAY</span><i>/</i><span>FUKUOKA</span><i>/</i>
+          <span>CLEAN SPACE</span><i>/</i><span>CLEAR AIR</span><i>/</i><span>GOOD DAY</span><i>/</i><span>FUKUOKA</span><i>/</i>
+        </div>
+      </div>
+
       <section className="services" id="service" aria-labelledby="service-heading">
         <div className="section-heading section-shell">
           <div>
@@ -163,7 +175,7 @@ export default function Home() {
             <figure className="service-photo">
               <img src={service.image} alt={service.alt} loading="lazy" />
             </figure>
-            <div className="service-copy">
+            <div className="service-copy" data-number={service.number}>
               <p className="service-copy__number">SERVICE <b>{service.number}</b></p>
               <h3>{service.title}</h3>
               <p className="service-copy__lead">{service.lead}</p>

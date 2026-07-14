@@ -4,7 +4,7 @@ import { useEffect, useRef, type CSSProperties } from "react";
 
 const FOAM_TIMELINE_MS = 5350;
 
-const bubbles = Array.from({ length: 48 }, (_, index) => {
+const bubbles = Array.from({ length: 64 }, (_, index) => {
   const band = Math.floor(index / 16);
   const lane = index % 16;
   const size = 48 + ((index * 67) % 190);
@@ -37,9 +37,10 @@ export default function ScrollFoam() {
     if (reducedMotion.matches) return;
 
     const curtain = foam.querySelector<HTMLElement>(".scroll-foam__curtain");
+    const copy = foam.querySelector<HTMLElement>(".scroll-foam__copy");
     const bubbleElements = Array.from(foam.querySelectorAll<HTMLElement>(".scroll-foam__bubble"));
 
-    if (!curtain || bubbleElements.length !== bubbles.length) return;
+    if (!curtain || !copy || bubbleElements.length !== bubbles.length) return;
 
     const animations = [
       curtain.animate(
@@ -50,6 +51,16 @@ export default function ScrollFoam() {
           { opacity: 0, transform: "translate3d(0, -238vh, 0)", offset: 1 },
         ],
         { duration: 4750, delay: 280, easing: "linear", fill: "both" },
+      ),
+      copy.animate(
+        [
+          { opacity: 0, transform: "translate3d(-50%, calc(-50% + 34px), 0)", offset: 0 },
+          { opacity: 1, transform: "translate3d(-50%, -50%, 0)", offset: 0.24 },
+          { opacity: 1, transform: "translate3d(-50%, calc(-50% - 8px), 0)", offset: 0.58 },
+          { opacity: 0, transform: "translate3d(-50%, calc(-50% - 54px), 0)", offset: 0.82 },
+          { opacity: 0, transform: "translate3d(-50%, calc(-50% - 70px), 0)", offset: 1 },
+        ],
+        { duration: FOAM_TIMELINE_MS, easing: "linear", fill: "both" },
       ),
       ...bubbleElements.map((element, index) => {
         const bubble = bubbles[index];
@@ -106,7 +117,7 @@ export default function ScrollFoam() {
       const triggerTop = trigger.getBoundingClientRect().top + window.scrollY;
       const message = document.querySelector<HTMLElement>(".message");
 
-      start = Math.max(0, triggerTop - window.innerHeight * 0.1);
+      start = Math.max(0, triggerTop - window.innerHeight * 0.06);
 
       if (message) {
         const messageTop = message.getBoundingClientRect().top + window.scrollY;
@@ -117,7 +128,7 @@ export default function ScrollFoam() {
         end = triggerTop + trigger.offsetHeight - window.innerHeight;
       }
 
-      end = Math.max(start + window.innerHeight * 0.48, end);
+      end = Math.max(start + window.innerHeight * 0.9, end);
       scheduleRender();
     };
 
@@ -140,6 +151,10 @@ export default function ScrollFoam() {
       <div className="scroll-foam-trigger" ref={triggerRef} aria-hidden="true" />
       <div className="scroll-foam" ref={foamRef} aria-hidden="true">
         <div className="scroll-foam__curtain" />
+        <div className="scroll-foam__copy">
+          <span>SCROLL CLEANING</span>
+          <strong>泡が流れて、<br />景色が変わる。</strong>
+        </div>
         <div className="scroll-foam__bubbles">
           {bubbles.map((bubble, index) => (
             <span

@@ -340,6 +340,44 @@ dd {
   font-weight: 600;
 }
 
+.hero-scroll {
+  position: absolute;
+  z-index: 4;
+  bottom: 105px;
+  left: max(80px, calc((100vw - 1200px) / 2));
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--white);
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.hero-scroll i {
+  position: relative;
+  display: block;
+  width: 58px;
+  height: 1px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.hero-scroll i::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: var(--lime);
+  transform: translateX(-100%);
+  animation: scroll-line 1.8s ease-in-out infinite;
+}
+
+@keyframes scroll-line {
+  0% { transform: translateX(-100%); }
+  55%, 100% { transform: translateX(100%); }
+}
+
 .message {
   position: relative;
   z-index: 1;
@@ -351,6 +389,46 @@ dd {
 
 .message::after {
   content: none;
+}
+
+.cleaning-marquee {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--lime);
+  border-block: 1px solid rgba(35, 75, 72, 0.22);
+  transform: rotate(-1.4deg) scale(1.03);
+}
+
+.cleaning-marquee__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  min-height: 96px;
+  animation: marquee-flow 24s linear infinite;
+  will-change: transform;
+}
+
+.cleaning-marquee span {
+  padding-inline: 34px;
+  font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: clamp(23px, 2.4vw, 35px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.cleaning-marquee i {
+  color: var(--white);
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@keyframes marquee-flow {
+  to { transform: translateX(-50%); }
 }
 
 .message__side {
@@ -514,6 +592,20 @@ dd {
   overflow: hidden;
 }
 
+.service-photo::after {
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: -40%;
+  width: 24%;
+  content: "";
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.58), transparent);
+  transform: rotate(10deg);
+  transition: left 900ms cubic-bezier(0.2, 0.72, 0.22, 1), opacity 180ms ease;
+  pointer-events: none;
+}
+
 .service-photo img {
   width: 100%;
   height: 100%;
@@ -525,9 +617,36 @@ dd {
   transform: scale(1.025);
 }
 
+.service-block:hover .service-photo::after {
+  left: 122%;
+  opacity: 0.82;
+}
+
 .service-copy {
   position: relative;
   z-index: 2;
+}
+
+.service-copy::before {
+  position: absolute;
+  z-index: -1;
+  top: -116px;
+  right: 0;
+  content: attr(data-number);
+  color: rgba(169, 227, 235, 0.22);
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(118px, 12vw, 178px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.08em;
+  pointer-events: none;
+}
+
+.service-block--regular .service-copy::before,
+.service-block--aircon .service-copy::before {
+  right: auto;
+  left: -22px;
+  color: rgba(182, 217, 92, 0.2);
 }
 
 .service-copy__number {
@@ -631,19 +750,6 @@ dd {
   grid-column: 1;
 }
 
-.service-block--regular .service-photo::before,
-.service-block--regular .service-photo::after {
-  content: none;
-}
-
-.service-block--regular .service-photo::before {
-  top: 43%;
-}
-
-.service-block--regular .service-photo::after {
-  top: calc(43% + 76px);
-}
-
 .service-block--aircon {
   display: grid;
   grid-template-columns: minmax(360px, 500px) minmax(520px, 1fr);
@@ -664,10 +770,6 @@ dd {
 
 .service-block--aircon .service-photo img {
   object-position: center 47%;
-}
-
-.service-block--aircon .service-photo::after {
-  content: none;
 }
 
 .service-block--aircon .service-copy {
@@ -698,8 +800,8 @@ dd {
   position: relative;
   z-index: 0;
   width: 100%;
-  height: 82vh;
-  min-height: 620px;
+  height: 118vh;
+  min-height: 820px;
   background: var(--paper);
   pointer-events: none;
 }
@@ -716,6 +818,37 @@ dd {
 
 .scroll-foam.is-visible {
   visibility: visible;
+}
+
+.scroll-foam__copy {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  width: min(760px, calc(100% - 80px));
+  color: var(--ink);
+  text-align: center;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  text-shadow: 0 2px 24px rgba(255, 255, 255, 0.74);
+  will-change: transform, opacity;
+}
+
+.scroll-foam__copy span {
+  display: block;
+  margin-bottom: 18px;
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+}
+
+.scroll-foam__copy strong {
+  display: block;
+  font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: clamp(42px, 5.2vw, 76px);
+  line-height: 1.34;
+  letter-spacing: 0.04em;
 }
 
 .scroll-foam__curtain {
@@ -757,7 +890,7 @@ dd {
 
 .scroll-foam__bubbles {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   inset: 0;
 }
 
@@ -1053,6 +1186,7 @@ dd {
 }
 
 .map-base i {
+  position: relative;
   grid-row: 1 / 3;
   display: block;
   width: 20px;
@@ -1061,6 +1195,20 @@ dd {
   border: 5px solid var(--white);
   border-radius: 50%;
   box-shadow: 0 0 0 3px var(--ink);
+}
+
+.map-base i::after {
+  position: absolute;
+  inset: -12px;
+  content: "";
+  border: 2px solid rgba(182, 217, 92, 0.7);
+  border-radius: 50%;
+  animation: map-pulse 2.4s ease-out infinite;
+}
+
+@keyframes map-pulse {
+  from { opacity: 0.9; transform: scale(0.5); }
+  to { opacity: 0; transform: scale(1.7); }
 }
 
 .map-base b {
@@ -1493,6 +1641,11 @@ dd {
   font-size: 21px;
   font-style: normal;
   font-weight: 400;
+  transition: transform 180ms ease;
+}
+
+.contact__actions a:hover i {
+  transform: translateX(7px);
 }
 
 .contact__notice {
@@ -1679,6 +1832,10 @@ dd {
     font-size: 12px;
     font-weight: 700;
   }
+
+  .hero-scroll {
+    left: 32px;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1852,9 +2009,34 @@ dd {
     display: none;
   }
 
+  .hero-scroll {
+    bottom: 88px;
+    left: 20px;
+    gap: 10px;
+    font-size: 7px;
+  }
+
+  .hero-scroll i {
+    width: 42px;
+  }
+
   .message {
     display: block;
     padding-block: 90px 100px;
+  }
+
+  .cleaning-marquee__track {
+    min-height: 72px;
+    animation-duration: 18s;
+  }
+
+  .cleaning-marquee span {
+    padding-inline: 23px;
+    font-size: 22px;
+  }
+
+  .cleaning-marquee i {
+    font-size: 24px;
   }
 
   .message__side {
@@ -2009,6 +2191,17 @@ dd {
     background: var(--paper);
   }
 
+  .service-copy::before {
+    top: -66px;
+    right: 0;
+    font-size: 94px;
+  }
+
+  .service-block--regular .service-copy::before,
+  .service-block--aircon .service-copy::before {
+    left: 0;
+  }
+
   .service-block--regular .service-copy {
     grid-row: auto;
     grid-column: auto;
@@ -2038,6 +2231,30 @@ dd {
   .works {
     display: block;
     padding-block: 92px 100px;
+  }
+
+  .scroll-foam-trigger {
+    height: 110vh;
+    min-height: 740px;
+  }
+
+  .scroll-foam__copy {
+    width: calc(100% - 40px);
+  }
+
+  .scroll-foam__copy span {
+    margin-bottom: 13px;
+    font-size: 8px;
+  }
+
+  .scroll-foam__copy strong {
+    font-size: 36px;
+    line-height: 1.4;
+  }
+
+  .scroll-foam__bubble {
+    width: min(var(--bubble-size), 42vw);
+    height: min(var(--bubble-size), 42vw);
   }
 
   .works__intro > p:last-child {
@@ -2332,6 +2549,22 @@ dd {
   }
 
   .scroll-foam-trigger {
-    height: 0;
+    height: 240px;
+    min-height: 0;
+    background:
+      radial-gradient(circle at 18% 70%, rgba(169, 227, 235, 0.55) 0 48px, transparent 50px),
+      radial-gradient(circle at 48% 25%, rgba(255, 255, 255, 0.85) 0 72px, transparent 74px),
+      radial-gradient(circle at 82% 62%, rgba(182, 217, 92, 0.34) 0 58px, transparent 60px),
+      var(--aqua-light);
+  }
+
+  .hero-scroll i::after,
+  .cleaning-marquee__track,
+  .map-base i::after {
+    animation: none !important;
+  }
+
+  .cleaning-marquee__track {
+    transform: none !important;
   }
 }
