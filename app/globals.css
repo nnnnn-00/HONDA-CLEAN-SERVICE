@@ -1866,7 +1866,7 @@ dd {
   z-index: 2;
   top: 0;
   bottom: 0;
-  left: 0;
+  left: -26px;
   width: 2px;
   content: "";
   background: linear-gradient(var(--aqua), var(--lime));
@@ -2766,6 +2766,10 @@ dd {
 
   .flow__list {
     margin-top: 50px;
+  }
+
+  .flow__list::before {
+    left: -12px;
   }
 
   .flow__list li {
