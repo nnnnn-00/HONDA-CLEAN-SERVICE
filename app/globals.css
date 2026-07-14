@@ -1292,58 +1292,48 @@ dd {
 
 .map-base {
   position: absolute;
+  z-index: 3;
   top: 29%;
   left: 21%;
-  display: grid;
-  grid-template-columns: 20px auto;
-  align-items: center;
-  column-gap: 10px;
+  display: block;
   color: var(--ink);
-  filter: drop-shadow(0 3px 10px rgba(35, 75, 72, 0.18));
+  filter: drop-shadow(0 4px 14px rgba(35, 75, 72, 0.26));
 }
 
 .map-base i {
   position: relative;
-  grid-row: 1 / 3;
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   background: var(--lime);
   border: 5px solid var(--white);
   border-radius: 50%;
   box-shadow: 0 0 0 3px var(--ink);
+  isolation: isolate;
+}
+
+.map-base i::before,
+.map-base i::after {
+  position: absolute;
+  z-index: -1;
+  inset: -18px;
+  content: "";
+  border: 3px solid rgba(169, 227, 235, 0.92);
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(169, 227, 235, 0.36);
+  animation: map-pulse 2.8s cubic-bezier(0.2, 0.62, 0.28, 1) infinite;
 }
 
 .map-base i::after {
-  position: absolute;
-  inset: -12px;
-  content: "";
-  border: 2px solid rgba(182, 217, 92, 0.7);
-  border-radius: 50%;
-  animation: map-pulse 2.4s ease-out infinite;
+  border-color: rgba(182, 217, 92, 0.9);
+  box-shadow: 0 0 20px rgba(182, 217, 92, 0.34);
+  animation-delay: 1.4s;
 }
 
 @keyframes map-pulse {
-  from { opacity: 0.9; transform: scale(0.5); }
-  to { opacity: 0; transform: scale(1.7); }
-}
-
-.map-base b {
-  width: max-content;
-  padding: 6px 13px 5px;
-  background: var(--white);
-  border-radius: 18px;
-  font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
-  font-size: 14px;
-}
-
-.map-base small {
-  width: max-content;
-  margin-top: 4px;
-  color: var(--ink);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  0% { opacity: 0; transform: scale(0.42); }
+  8% { opacity: 0.95; }
+  100% { opacity: 0; transform: scale(2.35); }
 }
 
 .local-map > p {
@@ -1411,14 +1401,19 @@ dd {
   height: auto;
   padding-top: 10px;
   padding-left: 18px;
-  color: #79a3a0;
+  color: var(--step-ink, #4f9099);
   background: transparent;
-  border-top: 2px solid var(--aqua);
+  border-top: 2px solid var(--step-color, var(--aqua));
   font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
 }
+
+.flow__list > li:nth-child(1) { --step-color: #a9e3eb; --step-ink: #4f9099; }
+.flow__list > li:nth-child(2) { --step-color: #addfbd; --step-ink: #5e927d; }
+.flow__list > li:nth-child(3) { --step-color: #b2dc8b; --step-ink: #6d8f56; }
+.flow__list > li:nth-child(4) { --step-color: #b6d95c; --step-ink: #788c38; }
 
 .flow__list h3 {
   font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
@@ -1438,7 +1433,7 @@ dd {
   display: grid;
   grid-template-columns: 56% 44%;
   min-height: 680px;
-  background: var(--ink);
+  background: #dceee8;
 }
 
 .profile__photo {
@@ -1459,7 +1454,7 @@ dd {
   align-self: center;
   max-width: 560px;
   padding: 80px 76px;
-  color: var(--white);
+  color: var(--ink);
 }
 
 .profile__copy::before,
@@ -1485,7 +1480,7 @@ dd {
 
 .profile__copy .eyebrow,
 .profile__copy > p {
-  color: var(--white);
+  color: var(--ink-soft);
 }
 
 .profile__lead {
@@ -1516,7 +1511,7 @@ dd {
 .two-voices > div {
   position: relative;
   padding: 19px 0 0 17px;
-  border-top: 1px solid rgba(255, 255, 255, 0.24);
+  border-top: 1px solid rgba(35, 75, 72, 0.22);
 }
 
 .two-voices > div::before {
@@ -1539,7 +1534,7 @@ dd {
 
 .two-voices span {
   display: block;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(35, 75, 72, 0.62);
   font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
   font-size: 7px;
   font-weight: 700;
@@ -1639,17 +1634,30 @@ dd {
   display: grid;
   grid-template-columns: 32px 1fr;
   gap: 17px;
+  align-items: start;
   padding: 0 50px 28px 0;
   color: var(--ink-soft);
   font-size: 13px;
   line-height: 2;
 }
 
+.faq__list details > p b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2px;
+  line-height: 2;
+}
+
+.faq__list details > p > span {
+  min-width: 0;
+}
+
 .contact {
   position: relative;
   overflow: hidden;
-  color: var(--white);
-  background: var(--ink);
+  color: var(--ink);
+  background: #dceff0;
 }
 
 .contact-wave {
@@ -1665,7 +1673,7 @@ dd {
   bottom: -118px;
   display: block;
   height: 200px;
-  background: var(--ink);
+  background: #dceff0;
   border-radius: 50% 50% 0 0;
 }
 
@@ -1689,6 +1697,10 @@ dd {
 
 .contact__inner .eyebrow {
   justify-content: center;
+}
+
+.contact .eyebrow--light {
+  color: var(--ink);
 }
 
 .contact h2 {
@@ -1720,19 +1732,19 @@ dd {
   flex-direction: column;
   height: 108px;
   padding: 0 38px;
-  color: var(--white);
+  color: var(--ink);
   background: transparent;
-  border-top: 1px solid rgba(255, 255, 255, 0.42);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+  border-top: 1px solid rgba(35, 75, 72, 0.34);
+  border-bottom: 1px solid rgba(35, 75, 72, 0.34);
   border-radius: 0;
   text-align: left;
   transition: transform 180ms ease, background 180ms ease;
 }
 
 .contact__actions a:last-child {
-  color: var(--white);
+  color: var(--ink);
   background: transparent;
-  border-left: 1px solid rgba(255, 255, 255, 0.42);
+  border-left: 1px solid rgba(35, 75, 72, 0.34);
 }
 
 .contact__actions a:hover {
@@ -2186,13 +2198,13 @@ dd {
   display: block;
   width: var(--contact-bubble-size);
   height: var(--contact-bubble-size);
-  border: 1px solid rgba(255, 255, 255, 0.46);
+  border: 1px solid rgba(35, 75, 72, 0.24);
   border-radius: 50%;
   background:
     radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.78) 0 3%, transparent 13%),
     radial-gradient(circle at 65% 68%, rgba(169, 227, 235, 0.08) 0 32%, rgba(182, 217, 92, 0.12) 65%, rgba(255, 255, 255, 0.22) 100%);
-  box-shadow: inset -8px -10px 20px rgba(169, 227, 235, 0.11), inset 4px 5px 12px rgba(255, 255, 255, 0.18);
-  opacity: 0.34;
+  box-shadow: inset -8px -10px 20px rgba(169, 227, 235, 0.3), inset 4px 5px 12px rgba(255, 255, 255, 0.62);
+  opacity: 0.48;
   animation: contact-bubble-drift var(--contact-bubble-speed) ease-in-out infinite alternate;
 }
 
@@ -2873,24 +2885,13 @@ dd {
   .map-base {
     top: 31%;
     left: 23%;
-    grid-template-columns: 16px auto;
-    column-gap: 7px;
   }
 
   .map-base i {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     border-width: 4px;
     box-shadow: 0 0 0 2px var(--ink);
-  }
-
-  .map-base b {
-    padding: 4px 9px;
-    font-size: 11px;
-  }
-
-  .map-base small {
-    font-size: 7px;
   }
 
   .map-route-tail {
@@ -3099,6 +3100,7 @@ dd {
 
   .hero-scroll i::after,
   .cleaning-marquee__track,
+  .map-base i::before,
   .map-base i::after,
   .profile::after,
   .ambient-bubbles span,

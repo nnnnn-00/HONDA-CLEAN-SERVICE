@@ -163,8 +163,8 @@ export default function Home() {
 
       <div className="cleaning-marquee" aria-hidden="true">
         <div className="cleaning-marquee__track">
-          <span>CLEAN SPACE</span><i>/</i><span>CLEAR AIR</span><i>/</i><span>GOOD DAY</span><i>/</i><span>FUKUOKA</span><i>/</i>
-          <span>CLEAN SPACE</span><i>/</i><span>CLEAR AIR</span><i>/</i><span>GOOD DAY</span><i>/</i><span>FUKUOKA</span><i>/</i>
+          <span>HONDA CLEAN SERVICE</span><i>/</i><span>HONDA CLEAN SERVICE</span><i>/</i><span>HONDA CLEAN SERVICE</span><i>/</i><span>HONDA CLEAN SERVICE</span><i>/</i>
+          <span>HONDA CLEAN SERVICE</span><i>/</i><span>HONDA CLEAN SERVICE</span><i>/</i><span>HONDA CLEAN SERVICE</span><i>/</i><span>HONDA CLEAN SERVICE</span><i>/</i>
         </div>
       </div>
 
@@ -254,8 +254,6 @@ export default function Home() {
               <img src="/fukuoka-map.png" alt="福岡県の地図シルエット" />
               <span className="map-base">
                 <i aria-hidden="true" />
-                <b>福岡市・早良区</b>
-                <small>市内各区・近郊へお伺いします</small>
               </span>
             </div>
             <p>FUKUOKA PREFECTURE</p>
@@ -316,7 +314,7 @@ export default function Home() {
           {faqs.map(([question, answer]) => (
             <details key={question}>
               <summary><span>Q</span>{question}<i>＋</i></summary>
-              <p><b>A</b>{answer}</p>
+              <p><b>A</b><span>{answer}</span></p>
             </details>
           ))}
         </div>
