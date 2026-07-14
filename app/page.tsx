@@ -48,6 +48,14 @@ const faqs = [
   ["エアコンは取付と清掃を一緒に頼めますか？", "機種や設置状況を確認したうえでご案内します。写真があると、よりスムーズに確認できます。"],
 ];
 
+function AmbientBubbles({ variant }: { variant: "message" | "services" | "works" | "flow" | "faq" }) {
+  return (
+    <div className={`ambient-bubbles ambient-bubbles--${variant}`} aria-hidden="true">
+      <span /><span /><span /><span /><span />
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main id="top">
@@ -120,12 +128,13 @@ export default function Home() {
       <ScrollFoam />
 
       <section className="message section-shell" id="about">
+        <AmbientBubbles variant="message" />
         <div className="message__side">
           <p className="eyebrow">OUR THOUGHTS</p>
           <span className="vertical-note">地域のすぐそばで、顔の見える仕事を。</span>
         </div>
         <div className="message__main">
-          <h2>いつもの場所を、<br />気持ちのいい場所へ。</h2>
+          <h2>いつもの場所を、<br />心地よい場所へ。</h2>
           <div className="message__body">
             <p>
               本田クリーンサービスは、福岡市早良区を拠点に、夫婦二人で営む清掃会社です。
@@ -160,6 +169,7 @@ export default function Home() {
       </div>
 
       <section className="services" id="service" aria-labelledby="service-heading">
+        <AmbientBubbles variant="services" />
         <div className="section-heading section-shell">
           <div>
             <p className="eyebrow">OUR SERVICES</p>
@@ -189,6 +199,7 @@ export default function Home() {
       </section>
 
       <section className="works section-shell" id="works" aria-labelledby="works-heading" data-reveal="wipe">
+        <AmbientBubbles variant="works" />
         <div className="works__intro">
           <p className="eyebrow">OUR WORK</p>
           <h2 id="works-heading">きれいになった、<br />その先まで。</h2>
@@ -227,7 +238,7 @@ export default function Home() {
         <div className="area__inner section-shell">
           <div className="area__copy">
             <p className="eyebrow">SERVICE AREA</p>
-            <h2 id="area-heading">早良区から、<br />福岡市のすぐそばへ。</h2>
+            <h2 id="area-heading">早良区から、<br />福岡市と近郊へ。</h2>
             <p>
               福岡市早良区を中心に、市内各区と近郊エリアへ伺います。
               ご依頼内容や日程によって調整できますので、対象地域か迷ったときも気軽にご相談ください。
@@ -254,6 +265,7 @@ export default function Home() {
       </section>
 
       <section className="flow section-shell" aria-labelledby="flow-heading" data-reveal="flow">
+        <AmbientBubbles variant="flow" />
         <div className="flow__heading">
           <p className="eyebrow">HOW IT WORKS</p>
           <h2 id="flow-heading">ご相談から、<br />作業まで。</h2>
@@ -278,7 +290,7 @@ export default function Home() {
         </figure>
         <div className="profile__copy">
           <p className="eyebrow">ABOUT US</p>
-          <h2 id="profile-heading">違う視点を、<br />ひとつの仕上がりへ。</h2>
+          <h2 id="profile-heading">違う視点を、<br />ひとつの答えへ。</h2>
           <p className="profile__lead">伺うのは、顔の見える私たち二人です。</p>
           <p>
             ご相談を受けた人と、実際に作業する人が違う。そんな行き違いをつくらないことも、夫婦二人で営む私たちの強みです。
@@ -294,6 +306,7 @@ export default function Home() {
       </section>
 
       <section className="faq section-shell" id="faq" aria-labelledby="faq-heading" data-reveal="faq">
+        <AmbientBubbles variant="faq" />
         <div className="faq__heading">
           <p className="eyebrow">FAQ</p>
           <h2 id="faq-heading">よくあるご質問</h2>
@@ -316,7 +329,7 @@ export default function Home() {
         </div>
         <div className="contact__inner">
           <p className="eyebrow eyebrow--light">CONTACT</p>
-          <h2 id="contact-heading">まずは、気になるところを<br />聞かせてください。</h2>
+          <h2 id="contact-heading">まずは、<span className="contact-heading__subject">気になるところを</span><br />聞かせてください。</h2>
           <p className="contact__lead">個人のお客さまも、管理会社さま・オーナーさまも。見積り前のご相談から承ります。</p>
           <div className="contact__actions">
             <a href="#contact-details"><span>PHONE</span><b>電話で相談する</b><i>→</i></a>
