@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type CSSProperties } from "react";
 
-const FOAM_TIMELINE_SECONDS = 5.35;
+const FOAM_TIMELINE_MS = 5350;
 
 const bubbles = Array.from({ length: 64 }, (_, index) => {
   const band = Math.floor(index / 16);
@@ -36,6 +36,52 @@ export default function ScrollFoam() {
 
     if (reducedMotion.matches) return;
 
+    const curtain = foam.querySelector<HTMLElement>(".scroll-foam__curtain");
+    const bubbleElements = Array.from(foam.querySelectorAll<HTMLElement>(".scroll-foam__bubble"));
+
+    if (!curtain || bubbleElements.length !== bubbles.length) return;
+
+    const animations = [
+      curtain.animate(
+        [
+          { opacity: 0, transform: "translate3d(0, 0, 0)", offset: 0 },
+          { opacity: 0.98, offset: 0.12 },
+          { opacity: 0.99, transform: "translate3d(0, -112vh, 0)", offset: 0.58 },
+          { opacity: 0, transform: "translate3d(0, -238vh, 0)", offset: 1 },
+        ],
+        { duration: 4750, delay: 280, easing: "linear", fill: "both" },
+      ),
+      ...bubbleElements.map((element, index) => {
+        const bubble = bubbles[index];
+
+        return element.animate(
+          [
+            { opacity: 0, transform: "translate3d(0, 0, 0) scale(0.22)", offset: 0 },
+            { opacity: 0.96, offset: 0.08 },
+            {
+              opacity: 0.98,
+              transform: `translate3d(${bubble.driftMid}px, -78vh, 0) scale(1)`,
+              offset: 0.58,
+            },
+            { opacity: 0.9, offset: 0.82 },
+            {
+              opacity: 0,
+              transform: `translate3d(${bubble.drift}px, -152vh, 0) scale(1.1)`,
+              offset: 1,
+            },
+          ],
+          {
+            duration: bubble.duration * 1000,
+            delay: bubble.delay * 1000,
+            easing: "linear",
+            fill: "both",
+          },
+        );
+      }),
+    ];
+
+    animations.forEach((animation) => animation.pause());
+
     let frame = 0;
     let start = 0;
     let end = 1;
@@ -43,8 +89,11 @@ export default function ScrollFoam() {
     const render = () => {
       frame = 0;
       const progress = Math.min(1, Math.max(0, (window.scrollY - start) / (end - start)));
+      const playhead = progress * FOAM_TIMELINE_MS;
 
-      foam.style.setProperty("--foam-playhead", `${progress * FOAM_TIMELINE_SECONDS}s`);
+      animations.forEach((animation) => {
+        animation.currentTime = playhead;
+      });
       foam.classList.toggle("is-visible", progress > 0 && progress < 1);
     };
 
@@ -71,6 +120,7 @@ export default function ScrollFoam() {
       window.removeEventListener("resize", measure);
       window.removeEventListener("load", measure);
       if (frame) window.cancelAnimationFrame(frame);
+      animations.forEach((animation) => animation.cancel());
     };
   }, []);
 

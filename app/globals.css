@@ -944,15 +944,6 @@ dd {
   filter: blur(2px);
 }
 
-.scroll-foam.is-visible .scroll-foam__curtain {
-  animation-name: foam-curtain-sweep;
-  animation-duration: 4.75s;
-  animation-timing-function: linear;
-  animation-delay: calc(0.28s - var(--foam-playhead));
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-
 .scroll-foam__bubbles {
   position: absolute;
   z-index: 2;
@@ -1003,54 +994,6 @@ dd {
   border-radius: 50%;
   filter: blur(0.7px);
   transform: rotate(-24deg);
-}
-
-.scroll-foam.is-visible .scroll-foam__bubble {
-  animation-name: foam-screen-rise;
-  animation-duration: var(--bubble-duration);
-  animation-timing-function: linear;
-  animation-delay: calc(var(--bubble-delay) - var(--foam-playhead));
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-
-@keyframes foam-screen-rise {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0) scale(0.22);
-  }
-  8% {
-    opacity: 0.96;
-  }
-  58% {
-    opacity: 0.98;
-    transform: translate3d(var(--bubble-drift-mid), -78vh, 0) scale(1);
-  }
-  82% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(var(--bubble-drift), -152vh, 0) scale(1.1);
-  }
-}
-
-@keyframes foam-curtain-sweep {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0);
-  }
-  12% {
-    opacity: 0.98;
-  }
-  58% {
-    opacity: 0.99;
-    transform: translate3d(0, -112vh, 0);
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(0, -238vh, 0);
-  }
 }
 
 .works__intro > p:last-child {
