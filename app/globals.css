@@ -1293,6 +1293,7 @@ dd {
   width: 52px;
   height: auto;
   padding-top: 10px;
+  padding-left: 18px;
   color: #79a3a0;
   background: transparent;
   border-top: 2px solid var(--aqua);
@@ -1866,7 +1867,7 @@ dd {
   z-index: 2;
   top: 0;
   bottom: 0;
-  left: -26px;
+  left: 0;
   width: 2px;
   content: "";
   background: linear-gradient(var(--aqua), var(--lime));
@@ -2768,8 +2769,8 @@ dd {
     margin-top: 50px;
   }
 
-  .flow__list::before {
-    left: -12px;
+  .flow__list > li > span {
+    padding-left: 12px;
   }
 
   .flow__list li {
