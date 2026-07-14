@@ -104,9 +104,20 @@ export default function ScrollFoam() {
 
     const measure = () => {
       const triggerTop = trigger.getBoundingClientRect().top + window.scrollY;
+      const message = document.querySelector<HTMLElement>(".message");
 
       start = Math.max(0, triggerTop - window.innerHeight * 0.18);
-      end = triggerTop + trigger.offsetHeight - window.innerHeight * 1.05;
+
+      if (message) {
+        const messageTop = message.getBoundingClientRect().top + window.scrollY;
+        const messagePaddingTop = Number.parseFloat(window.getComputedStyle(message).paddingTop) || 0;
+
+        end = messageTop + messagePaddingTop - window.innerHeight * 0.98;
+      } else {
+        end = triggerTop + trigger.offsetHeight - window.innerHeight;
+      }
+
+      end = Math.max(start + window.innerHeight * 0.75, end);
       scheduleRender();
     };
 
