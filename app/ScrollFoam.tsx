@@ -18,7 +18,6 @@ const bubbles = Array.from({ length: 64 }, (_, index) => {
     duration: 3.55 + ((index * 29) % 12) * 0.085,
     drift,
     driftMid: drift * 0.55,
-    hue: -14 + ((index * 23) % 29),
   };
 });
 
@@ -96,18 +95,30 @@ export default function ScrollFoam() {
     animations.forEach((animation) => animation.pause());
 
     let frame = 0;
+    let measureFrame = 0;
     let start = 0;
     let end = 1;
+    let lastPlayhead = -1;
+    let lastVisibility = false;
+    let pageIsVisible = !document.hidden;
 
     const render = () => {
       frame = 0;
       const progress = Math.min(1, Math.max(0, (window.scrollY - start) / (end - start)));
       const playhead = progress * FOAM_TIMELINE_MS;
+      const isVisible = progress > 0 && progress < 1;
+
+      if (isVisible !== lastVisibility) {
+        foam.classList.toggle("is-visible", isVisible);
+        lastVisibility = isVisible;
+      }
+
+      if (!pageIsVisible || Math.abs(playhead - lastPlayhead) < 0.75) return;
 
       animations.forEach((animation) => {
         animation.currentTime = playhead;
       });
-      foam.classList.toggle("is-visible", progress > 0 && progress < 1);
+      lastPlayhead = playhead;
     };
 
     const scheduleRender = () => {
@@ -134,16 +145,32 @@ export default function ScrollFoam() {
       scheduleRender();
     };
 
+    const scheduleMeasure = () => {
+      if (measureFrame) return;
+      measureFrame = window.requestAnimationFrame(() => {
+        measureFrame = 0;
+        measure();
+      });
+    };
+
+    const handleVisibilityChange = () => {
+      pageIsVisible = !document.hidden;
+      if (pageIsVisible) scheduleRender();
+    };
+
     measure();
     window.addEventListener("scroll", scheduleRender, { passive: true });
-    window.addEventListener("resize", measure);
-    window.addEventListener("load", measure);
+    window.addEventListener("resize", scheduleMeasure);
+    window.addEventListener("load", scheduleMeasure);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       window.removeEventListener("scroll", scheduleRender);
-      window.removeEventListener("resize", measure);
-      window.removeEventListener("load", measure);
+      window.removeEventListener("resize", scheduleMeasure);
+      window.removeEventListener("load", scheduleMeasure);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (frame) window.cancelAnimationFrame(frame);
+      if (measureFrame) window.cancelAnimationFrame(measureFrame);
       animations.forEach((animation) => animation.cancel());
     };
   }, []);
@@ -166,11 +193,6 @@ export default function ScrollFoam() {
                 "--bubble-left": `${bubble.left}%`,
                 "--bubble-size": `${bubble.size}px`,
                 "--bubble-bottom": `${-bubble.size}px`,
-                "--bubble-delay": `${bubble.delay}s`,
-                "--bubble-duration": `${bubble.duration}s`,
-                "--bubble-drift": `${bubble.drift}px`,
-                "--bubble-drift-mid": `${bubble.driftMid}px`,
-                "--bubble-hue": `${bubble.hue}deg`,
               } as CSSProperties}
             />
           ))}
