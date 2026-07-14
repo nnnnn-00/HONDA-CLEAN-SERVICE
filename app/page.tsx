@@ -55,6 +55,11 @@ export default function Home() {
           alt="清掃道具を車から運ぶ二人のスタッフ"
         />
         <div className="hero__veil" aria-hidden="true" />
+        <div className="hero-bubbles" aria-hidden="true">
+          <span />
+          <span />
+          <i />
+        </div>
 
         <header className="site-header">
           <a className="brand" href="#top" aria-label="本田クリーンサービス ホーム">
@@ -205,16 +210,17 @@ export default function Home() {
             </dl>
           </div>
 
-          <div className="local-map" role="img" aria-label="早良区を中心とした福岡市内の対応エリアイメージ">
-            <span className="ward ward--higashi">東区</span>
-            <span className="ward ward--hakata">博多区</span>
-            <span className="ward ward--chuo">中央区</span>
-            <span className="ward ward--minami">南区</span>
-            <span className="ward ward--jonan">城南区</span>
-            <span className="ward ward--sawara"><b>早良区</b><small>OUR BASE</small></span>
-            <span className="ward ward--nishi">西区</span>
-            <span className="map-pin" aria-hidden="true"><i /></span>
-            <p>FUKUOKA CITY</p>
+          <div className="local-map" role="img" aria-label="福岡県内で福岡市早良区を拠点とする対応エリアイメージ">
+            <span className="local-map__halo" aria-hidden="true" />
+            <div className="fukuoka-shape">
+              <img src="/fukuoka-map.png" alt="福岡県の地図シルエット" />
+              <span className="map-base">
+                <i aria-hidden="true" />
+                <b>福岡市</b>
+                <small>早良区からお伺いします</small>
+              </span>
+            </div>
+            <p>FUKUOKA PREFECTURE</p>
           </div>
         </div>
       </section>
@@ -300,7 +306,10 @@ export default function Home() {
           <a href="#faq">よくある質問</a>
           <a href="#contact">お問い合わせ</a>
         </nav>
-        <p className="footer__copy">© HONDA CLEAN SERVICE</p>
+        <p className="footer__copy">
+          © HONDA CLEAN SERVICE
+          <span>Map silhouette: LERK / Wikimedia Commons</span>
+        </p>
       </footer>
 
       <nav className="mobile-fixed" aria-label="固定お問い合わせメニュー">
