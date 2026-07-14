@@ -1,5 +1,6 @@
 import ScrollFoam from "./ScrollFoam";
 import SectionMotion from "./SectionMotion";
+import WipeComparison from "./WipeComparison";
 
 const services = [
   {
@@ -48,7 +49,7 @@ const faqs = [
   ["エアコンは取付と清掃を一緒に頼めますか？", "機種や設置状況を確認したうえでご案内します。写真があると、よりスムーズに確認できます。"],
 ];
 
-function AmbientBubbles({ variant }: { variant: "message" | "services" | "works" | "flow" | "faq" }) {
+function AmbientBubbles({ variant }: { variant: "message" | "services" | "works" | "area" | "flow" | "profile" | "faq" }) {
   return (
     <div className={`ambient-bubbles ambient-bubbles--${variant}`} aria-hidden="true">
       <span /><span /><span /><span />
@@ -209,31 +210,12 @@ export default function Home() {
             仕上がりは一緒に確認し、気になるところを残しません。
           </p>
         </div>
-        <div className="wipe-comparison" tabIndex={0} aria-label="清掃前から清掃後へ拭き上げるように変化する施工写真のイメージ">
-          <figure className="wipe-comparison__before">
-            <img
-              src="https://images.pexels.com/photos/3616735/pexels-photo-3616735.jpeg?auto=compress&cs=tinysrgb&w=1400"
-              alt="清掃前の掲載位置イメージ"
-              loading="lazy"
-            />
-            <figcaption>BEFORE</figcaption>
-          </figure>
-          <figure className="wipe-comparison__after">
-            <img
-              src="https://images.pexels.com/photos/3616735/pexels-photo-3616735.jpeg?auto=compress&cs=tinysrgb&w=1400"
-              alt="清掃後の掲載位置イメージ"
-              loading="lazy"
-            />
-            <figcaption>AFTER</figcaption>
-          </figure>
-          <span className="wipe-comparison__handle" aria-hidden="true" />
-          <p className="wipe-comparison__guide">写真に触れると、清掃後の仕上がりが現れます。</p>
-          <p className="comparison__note">公開時は、同じ画角で撮影した実際の施工写真へ差し替えます。</p>
-        </div>
+        <WipeComparison />
       </section>
 
       <section className="area" id="area" aria-labelledby="area-heading" data-reveal="map">
         <div className="area-wave" aria-hidden="true"><span /><i /></div>
+        <AmbientBubbles variant="area" />
         <div className="area__inner section-shell">
           <div className="area__copy">
             <p className="eyebrow">SERVICE AREA</p>
@@ -278,6 +260,7 @@ export default function Home() {
       </section>
 
       <section className="profile" aria-labelledby="profile-heading" data-reveal="profile">
+        <AmbientBubbles variant="profile" />
         <figure className="profile__photo">
           <img
             src="https://images.pexels.com/photos/6200780/pexels-photo-6200780.jpeg?auto=compress&cs=tinysrgb&w=1800"
