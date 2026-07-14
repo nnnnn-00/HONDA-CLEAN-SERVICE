@@ -57,16 +57,6 @@ export default function Home() {
           alt="清掃道具を車から運ぶ二人のスタッフ"
         />
         <div className="hero__veil" aria-hidden="true" />
-        <div className="hero-bubbles" aria-hidden="true">
-          <span />
-          <span />
-          <i />
-        </div>
-        <div className="hero-pair-mark" aria-hidden="true">
-          <span />
-          <i />
-          <small>TWO HANDS<br />ONE CLEAN</small>
-        </div>
 
         <header className="site-header">
           <a className="brand" href="#top" aria-label="本田クリーンサービス ホーム">
@@ -101,9 +91,9 @@ export default function Home() {
         <div className="hero__copy">
           <p className="eyebrow eyebrow--light">FUKUOKA / SAWARA</p>
           <h1 id="hero-title">
-            二人で、ひとつの
+            <span>二人で、ひとつの</span>
             <br />
-            きれいを。
+            <span>きれいを。</span>
           </h1>
           <p className="hero__service">福岡の暮らしに、顔の見える安心を。<br />入退去清掃・定期清掃・エアコン取付／清掃</p>
         </div>
@@ -121,12 +111,6 @@ export default function Home() {
       </section>
 
       <ScrollFoam />
-
-      <div className="clean-route" aria-hidden="true">
-        <span />
-        <i />
-        <b />
-      </div>
 
       <section className="message section-shell" id="about">
         <div className="message__side">
@@ -178,7 +162,6 @@ export default function Home() {
           >
             <figure className="service-photo">
               <img src={service.image} alt={service.alt} loading="lazy" />
-              {index === 2 && <span className="service-photo__wave" aria-hidden="true" />}
             </figure>
             <div className="service-copy">
               <p className="service-copy__number">SERVICE <b>{service.number}</b></p>
@@ -242,13 +225,12 @@ export default function Home() {
           </div>
 
           <div className="local-map" role="img" aria-label="福岡県内で福岡市早良区を拠点とする対応エリアイメージ">
-            <span className="local-map__halo" aria-hidden="true" />
             <div className="fukuoka-shape">
               <img src="/fukuoka-map.png" alt="福岡県の地図シルエット" />
               <span className="map-base">
                 <i aria-hidden="true" />
-                <b>福岡市</b>
-                <small>早良区からお伺いします</small>
+                <b>福岡市・早良区</b>
+                <small>市内各区・近郊へお伺いします</small>
               </span>
             </div>
             <p>FUKUOKA PREFECTURE</p>

@@ -4,7 +4,7 @@ import { useEffect, useRef, type CSSProperties } from "react";
 
 const FOAM_TIMELINE_MS = 5350;
 
-const bubbles = Array.from({ length: 64 }, (_, index) => {
+const bubbles = Array.from({ length: 48 }, (_, index) => {
   const band = Math.floor(index / 16);
   const lane = index % 16;
   const size = 48 + ((index * 67) % 190);
@@ -106,7 +106,7 @@ export default function ScrollFoam() {
       const triggerTop = trigger.getBoundingClientRect().top + window.scrollY;
       const message = document.querySelector<HTMLElement>(".message");
 
-      start = Math.max(0, triggerTop - window.innerHeight * 0.18);
+      start = Math.max(0, triggerTop - window.innerHeight * 0.1);
 
       if (message) {
         const messageTop = message.getBoundingClientRect().top + window.scrollY;
@@ -117,7 +117,7 @@ export default function ScrollFoam() {
         end = triggerTop + trigger.offsetHeight - window.innerHeight;
       }
 
-      end = Math.max(start + window.innerHeight * 0.75, end);
+      end = Math.max(start + window.innerHeight * 0.48, end);
       scheduleRender();
     };
 
