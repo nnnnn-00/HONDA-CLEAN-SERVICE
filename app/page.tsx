@@ -51,7 +51,7 @@ const faqs = [
 function AmbientBubbles({ variant }: { variant: "message" | "services" | "works" | "flow" | "faq" }) {
   return (
     <div className={`ambient-bubbles ambient-bubbles--${variant}`} aria-hidden="true">
-      <span /><span /><span /><span /><span />
+      <span /><span /><span /><span />
     </div>
   );
 }
@@ -181,6 +181,7 @@ export default function Home() {
         {services.map((service, index) => (
           <article
             className={service.className}
+            data-reveal="service"
             id={index === 0 ? "move-cleaning" : index === 1 ? "regular-cleaning" : "aircon-cleaning"}
             key={service.number}
           >
@@ -225,10 +226,8 @@ export default function Home() {
             />
             <figcaption>AFTER</figcaption>
           </figure>
-          <span className="wipe-comparison__handle" aria-hidden="true">
-            <i><img src="/wipe-hand.png" alt="" /></i>
-          </span>
-          <p className="wipe-comparison__guide">写真に触れると、布で拭くように仕上がりが現れます。</p>
+          <span className="wipe-comparison__handle" aria-hidden="true" />
+          <p className="wipe-comparison__guide">写真に触れると、清掃後の仕上がりが現れます。</p>
           <p className="comparison__note">公開時は、同じ画角で撮影した実際の施工写真へ差し替えます。</p>
         </div>
       </section>
@@ -314,7 +313,7 @@ export default function Home() {
           {faqs.map(([question, answer]) => (
             <details key={question}>
               <summary><span>Q</span>{question}<i>＋</i></summary>
-              <p><b>A</b><span>{answer}</span></p>
+              <div className="faq__answer"><p><b>A</b><span>{answer}</span></p></div>
             </details>
           ))}
         </div>

@@ -42,6 +42,8 @@ export default function ScrollFoam() {
 
     if (!curtain || !copy || bubbleElements.length !== bubbles.length) return;
 
+    const activeBubbleElements = bubbleElements.slice(0, window.innerWidth <= 760 ? 36 : bubbles.length);
+
     const animations = [
       curtain.animate(
         [
@@ -62,7 +64,7 @@ export default function ScrollFoam() {
         ],
         { duration: FOAM_TIMELINE_MS, easing: "linear", fill: "both" },
       ),
-      ...bubbleElements.map((element, index) => {
+      ...activeBubbleElements.map((element, index) => {
         const bubble = bubbles[index];
 
         return element.animate(
