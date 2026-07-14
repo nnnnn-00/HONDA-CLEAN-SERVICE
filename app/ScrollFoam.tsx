@@ -130,7 +130,7 @@ export default function ScrollFoam() {
         end = triggerTop + trigger.offsetHeight - window.innerHeight;
       }
 
-      end = Math.max(start + window.innerHeight * 0.9, end);
+      end = Math.max(start + window.innerHeight * 0.72, end);
       scheduleRender();
     };
 
