@@ -22,7 +22,6 @@ export default function WipeComparison() {
         const bounds = event.currentTarget.getBoundingClientRect();
         setPosition(event.currentTarget, ((event.clientX - bounds.left) / bounds.width) * 100);
       }}
-      onPointerLeave={(event) => setPosition(event.currentTarget, 52)}
       onKeyDown={(event) => {
         if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
         event.preventDefault();

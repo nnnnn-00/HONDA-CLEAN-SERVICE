@@ -1305,7 +1305,7 @@ dd {
   content: "";
   border: 1px solid rgba(79, 168, 180, 0.66);
   border-radius: 50%;
-  animation: map-ring-breathe 3.4s ease-in-out infinite alternate;
+  animation: map-ring-breathe 3.4s cubic-bezier(0.18, 0.62, 0.26, 1) infinite;
 }
 
 .map-base i::before {
@@ -1319,8 +1319,9 @@ dd {
 }
 
 @keyframes map-ring-breathe {
-  from { opacity: 0.2; }
-  to { opacity: 0.62; }
+  0% { opacity: 0.1; transform: scale(0.78); }
+  35% { opacity: 0.62; }
+  100% { opacity: 0; transform: scale(1.28); }
 }
 
 .local-map > p {
