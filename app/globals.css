@@ -2586,13 +2586,20 @@ dd {
   }
 
   .cleaning-marquee__track {
-    min-height: 72px;
+    min-height: 64px;
     animation-duration: 18s;
   }
 
+  .cleaning-marquee {
+    z-index: 1;
+    transform: none;
+  }
+
   .cleaning-marquee span {
-    padding-inline: 23px;
-    font-size: 22px;
+    flex: none;
+    padding-inline: 26px;
+    font-size: 20px;
+    line-height: 1;
   }
 
   .cleaning-marquee i {
@@ -2822,7 +2829,7 @@ dd {
     backdrop-filter: none;
   }
 
-  .scroll-foam__bubble:nth-child(n + 37) {
+  .scroll-foam__bubble:nth-child(n + 27) {
     display: none;
   }
 
