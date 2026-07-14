@@ -120,6 +120,8 @@ export default function Home() {
         </nav>
       </section>
 
+      <ScrollFoam />
+
       <div className="clean-route" aria-hidden="true">
         <span />
         <i />
@@ -190,7 +192,6 @@ export default function Home() {
       </section>
 
       <section className="works section-shell" id="works" aria-labelledby="works-heading">
-        <ScrollFoam />
         <div className="works__intro">
           <p className="eyebrow">OUR WORK</p>
           <h2 id="works-heading">きれいになった、<br />その先まで。</h2>
