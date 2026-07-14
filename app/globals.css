@@ -894,6 +894,7 @@ dd {
 }
 
 .scroll-foam {
+  --foam-playhead: 0s;
   position: fixed;
   z-index: 300;
   inset: 0;
@@ -943,7 +944,12 @@ dd {
 }
 
 .scroll-foam.is-visible .scroll-foam__curtain {
-  animation: foam-curtain-sweep 4.75s cubic-bezier(0.22, 0.72, 0.2, 1) 0.28s both;
+  animation-name: foam-curtain-sweep;
+  animation-duration: 4.75s;
+  animation-timing-function: linear;
+  animation-delay: calc(0.28s - var(--foam-playhead));
+  animation-fill-mode: both;
+  animation-play-state: paused;
 }
 
 .scroll-foam__bubbles {
@@ -995,7 +1001,12 @@ dd {
 }
 
 .scroll-foam.is-visible .scroll-foam__bubble {
-  animation: foam-screen-rise var(--bubble-duration) cubic-bezier(0.18, 0.66, 0.2, 1) var(--bubble-delay) both;
+  animation-name: foam-screen-rise;
+  animation-duration: var(--bubble-duration);
+  animation-timing-function: linear;
+  animation-delay: calc(var(--bubble-delay) - var(--foam-playhead));
+  animation-fill-mode: both;
+  animation-play-state: paused;
 }
 
 @keyframes foam-screen-rise {
@@ -1027,13 +1038,9 @@ dd {
   12% {
     opacity: 0.98;
   }
-  54% {
+  58% {
     opacity: 0.99;
-    transform: translate3d(0, -110vh, 0);
-  }
-  68% {
-    opacity: 0.99;
-    transform: translate3d(0, -114vh, 0);
+    transform: translate3d(0, -112vh, 0);
   }
   100% {
     opacity: 0;

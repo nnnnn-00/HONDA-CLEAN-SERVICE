@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, type CSSProperties } from "react";
 
+const FOAM_TIMELINE_SECONDS = 5.35;
+
 const bubbles = Array.from({ length: 64 }, (_, index) => {
   const band = Math.floor(index / 16);
   const lane = index % 16;
@@ -33,27 +35,41 @@ export default function ScrollFoam() {
 
     if (reducedMotion.matches) return;
 
-    let hideTimer: number | undefined;
+    let frame = 0;
+    let start = 0;
+    let end = 1;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
+    const render = () => {
+      frame = 0;
+      const progress = Math.min(1, Math.max(0, (window.scrollY - start) / (end - start)));
 
-        foam.classList.add("is-visible");
-        observer.unobserve(trigger);
-        hideTimer = window.setTimeout(() => foam.classList.remove("is-visible"), 5900);
-      },
-      {
-        rootMargin: "0px 0px -12% 0px",
-        threshold: 0.08,
-      },
-    );
+      foam.style.setProperty("--foam-playhead", `${progress * FOAM_TIMELINE_SECONDS}s`);
+      foam.classList.toggle("is-visible", progress > 0 && progress < 1);
+    };
 
-    observer.observe(trigger);
+    const scheduleRender = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(render);
+    };
+
+    const measure = () => {
+      const triggerTop = trigger.getBoundingClientRect().top + window.scrollY;
+
+      start = Math.max(0, triggerTop - window.innerHeight * 0.72);
+      end = triggerTop + window.innerHeight * 0.52;
+      scheduleRender();
+    };
+
+    measure();
+    window.addEventListener("scroll", scheduleRender, { passive: true });
+    window.addEventListener("resize", measure);
+    window.addEventListener("load", measure);
 
     return () => {
-      observer.disconnect();
-      if (hideTimer) window.clearTimeout(hideTimer);
+      window.removeEventListener("scroll", scheduleRender);
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("load", measure);
+      if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
 
