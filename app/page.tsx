@@ -1,4 +1,5 @@
 import ScrollFoam from "./ScrollFoam";
+import SectionMotion from "./SectionMotion";
 
 const services = [
   {
@@ -50,6 +51,7 @@ const faqs = [
 export default function Home() {
   return (
     <main id="top">
+      <SectionMotion />
       <section className="hero" aria-labelledby="hero-title">
         <img
           className="hero__photo"
@@ -186,7 +188,7 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="works section-shell" id="works" aria-labelledby="works-heading">
+      <section className="works section-shell" id="works" aria-labelledby="works-heading" data-reveal="wipe">
         <div className="works__intro">
           <p className="eyebrow">OUR WORK</p>
           <h2 id="works-heading">きれいになった、<br />その先まで。</h2>
@@ -220,7 +222,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="area" id="area" aria-labelledby="area-heading">
+      <section className="area" id="area" aria-labelledby="area-heading" data-reveal="map">
         <div className="area-wave" aria-hidden="true"><span /><i /></div>
         <div className="area__inner section-shell">
           <div className="area__copy">
@@ -251,7 +253,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flow section-shell" aria-labelledby="flow-heading">
+      <section className="flow section-shell" aria-labelledby="flow-heading" data-reveal="flow">
         <div className="flow__heading">
           <p className="eyebrow">HOW IT WORKS</p>
           <h2 id="flow-heading">ご相談から作業まで。</h2>
@@ -266,7 +268,7 @@ export default function Home() {
         </ol>
       </section>
 
-      <section className="profile" aria-labelledby="profile-heading">
+      <section className="profile" aria-labelledby="profile-heading" data-reveal="profile">
         <figure className="profile__photo">
           <img
             src="https://images.pexels.com/photos/6200780/pexels-photo-6200780.jpeg?auto=compress&cs=tinysrgb&w=1800"
@@ -291,7 +293,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="faq section-shell" id="faq" aria-labelledby="faq-heading">
+      <section className="faq section-shell" id="faq" aria-labelledby="faq-heading" data-reveal="faq">
         <div className="faq__heading">
           <p className="eyebrow">FAQ</p>
           <h2 id="faq-heading">よくあるご質問</h2>
@@ -307,8 +309,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="contact" id="contact" aria-labelledby="contact-heading">
+      <section className="contact" id="contact" aria-labelledby="contact-heading" data-reveal="contact">
         <div className="contact-wave" aria-hidden="true"><span /><i /></div>
+        <div className="contact-bubbles" aria-hidden="true">
+          <span /><span /><span /><span /><span /><span />
+        </div>
         <div className="contact__inner">
           <p className="eyebrow eyebrow--light">CONTACT</p>
           <h2 id="contact-heading">まずは、気になるところを<br />聞かせてください。</h2>
