@@ -13,12 +13,12 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     url: siteUrl,
     siteName: "本田クリーンサービス",
-    title: "本田クリーンサービス｜福岡の暮らしを、二人で丁寧に。",
+    title: "本田クリーンサービス｜二人で、ひとつのきれいを。",
     description:
       "福岡市早良区を中心に、入退去清掃・定期清掃・エアコン取付／清掃に対応します。",
     images: [
       {
-        url: "/og.png",
+        url: "/og-pair.png",
         width: 1200,
         height: 630,
         alt: "本田クリーンサービス 福岡の暮らしを、二人で丁寧に。",
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "本田クリーンサービス｜福岡の暮らしを、二人で丁寧に。",
+    title: "本田クリーンサービス｜二人で、ひとつのきれいを。",
     description: "福岡市早良区を中心に、清掃とエアコンサービスを夫婦二人で丁寧に。",
-    images: ["/og.png"],
+    images: ["/og-pair.png"],
   },
 };
 

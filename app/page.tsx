@@ -60,6 +60,11 @@ export default function Home() {
           <span />
           <i />
         </div>
+        <div className="hero-pair-mark" aria-hidden="true">
+          <span />
+          <i />
+          <small>TWO HANDS<br />ONE CLEAN</small>
+        </div>
 
         <header className="site-header">
           <a className="brand" href="#top" aria-label="本田クリーンサービス ホーム">
@@ -94,11 +99,11 @@ export default function Home() {
         <div className="hero__copy">
           <p className="eyebrow eyebrow--light">FUKUOKA / SAWARA</p>
           <h1 id="hero-title">
-            福岡の暮らしを、
+            二人で、ひとつの
             <br />
-            二人で丁寧に。
+            きれいを。
           </h1>
-          <p className="hero__service">入退去清掃・定期清掃・エアコン取付／清掃</p>
+          <p className="hero__service">福岡の暮らしに、顔の見える安心を。<br />入退去清掃・定期清掃・エアコン取付／清掃</p>
         </div>
 
         <div className="hero-wave" aria-hidden="true">
@@ -112,6 +117,12 @@ export default function Home() {
           <a href="#aircon-cleaning"><b>03</b><span>エアコン取付・清掃</span></a>
         </nav>
       </section>
+
+      <div className="clean-route" aria-hidden="true">
+        <span />
+        <i />
+        <b />
+      </div>
 
       <section className="message section-shell" id="about">
         <div className="message__side">
@@ -130,6 +141,19 @@ export default function Home() {
               一件ずつ状態を見て、必要なことをまっすぐ、丁寧に行います。
             </p>
           </div>
+          <div className="pair-principle" aria-label="本田クリーンサービスが大切にする二つの視点">
+            <div>
+              <span>01</span>
+              <b>技術の目</b>
+              <small>見えないところまで、確かな作業を。</small>
+            </div>
+            <div>
+              <span>02</span>
+              <b>暮らしの目</b>
+              <small>使う人の気持ちまで、想像すること。</small>
+            </div>
+            <p>違う二つの視点が重なって、ひとつの気持ちよさになります。</p>
+          </div>
         </div>
       </section>
 
@@ -139,7 +163,7 @@ export default function Home() {
             <p className="eyebrow">OUR SERVICES</p>
             <h2 id="service-heading">暮らしと建物の、<br />きれいを支えます。</h2>
           </div>
-          <p className="section-heading__note">個人のお客さまから、管理会社さま・オーナーさままで。</p>
+          <p className="section-heading__note">二人の視点をひとつにつなぎ、場所ごとに最適な方法で整えます。</p>
         </div>
 
         {services.map((service, index) => (
@@ -172,17 +196,16 @@ export default function Home() {
             仕上がりは一緒に確認し、気になるところを残しません。
           </p>
         </div>
-        <div className="comparison" aria-label="清掃実績写真の掲載イメージ">
-          <figure>
+        <div className="wipe-comparison" tabIndex={0} aria-label="清掃前から清掃後へ拭き上げるように変化する施工写真のイメージ">
+          <figure className="wipe-comparison__before">
             <img
-              className="comparison__before"
               src="https://images.pexels.com/photos/3616735/pexels-photo-3616735.jpeg?auto=compress&cs=tinysrgb&w=1400"
               alt="清掃前の掲載位置イメージ"
               loading="lazy"
             />
             <figcaption>BEFORE</figcaption>
           </figure>
-          <figure>
+          <figure className="wipe-comparison__after">
             <img
               src="https://images.pexels.com/photos/3616735/pexels-photo-3616735.jpeg?auto=compress&cs=tinysrgb&w=1400"
               alt="清掃後の掲載位置イメージ"
@@ -190,6 +213,8 @@ export default function Home() {
             />
             <figcaption>AFTER</figcaption>
           </figure>
+          <span className="wipe-comparison__handle" aria-hidden="true"><i>→</i></span>
+          <p className="wipe-comparison__guide">写真に触れると、拭き上げるように仕上がりが現れます。</p>
           <p className="comparison__note">公開時は、同じ画角で撮影した実際の施工写真へ差し替えます。</p>
         </div>
       </section>
@@ -221,6 +246,7 @@ export default function Home() {
               </span>
             </div>
             <p>FUKUOKA PREFECTURE</p>
+            <span className="map-route-tail" aria-hidden="true" />
           </div>
         </div>
       </section>
@@ -250,12 +276,16 @@ export default function Home() {
         </figure>
         <div className="profile__copy">
           <p className="eyebrow">ABOUT US</p>
-          <h2 id="profile-heading">最初の相談から、<br />最後の確認まで。</h2>
-          <p className="profile__lead">伺うのは、私たち二人です。</p>
+          <h2 id="profile-heading">違う視点を、<br />ひとつの仕上がりへ。</h2>
+          <p className="profile__lead">伺うのは、顔の見える私たち二人です。</p>
           <p>
             ご相談を受けた人と、実際に作業する人が違う。そんな行き違いをつくらないことも、夫婦二人で営む私たちの強みです。
             清掃のことも、エアコンのことも、気になったことをそのまま話せる関係を大切にしています。
           </p>
+          <div className="two-voices" aria-label="二人で補い合う仕事の視点">
+            <div><span>TECHNICAL EYE</span><b>奥や裏側まで、<br />作業の精度を見ます。</b></div>
+            <div><span>LIVING EYE</span><b>使うときの心地よさを、<br />暮らしの目線で見ます。</b></div>
+          </div>
           <p className="profile__note">※現在の人物写真はデザイン確認用です。公開前に実際のお二人の写真へ差し替えます。</p>
           <p className="profile__sign">本田クリーンサービス</p>
         </div>
