@@ -1,3 +1,5 @@
+import ScrollFoam from "./ScrollFoam";
+
 const services = [
   {
     number: "01",
@@ -188,6 +190,7 @@ export default function Home() {
       </section>
 
       <section className="works section-shell" id="works" aria-labelledby="works-heading">
+        <ScrollFoam />
         <div className="works__intro">
           <p className="eyebrow">OUR WORK</p>
           <h2 id="works-heading">きれいになった、<br />その先まで。</h2>

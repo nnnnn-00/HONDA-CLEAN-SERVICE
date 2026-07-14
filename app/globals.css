@@ -870,11 +870,100 @@ dd {
 }
 
 .works {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: 350px 1fr;
   gap: 100px;
   padding-block: 155px 190px;
   border-top: 1px solid var(--line);
+}
+
+.works__intro,
+.wipe-comparison {
+  position: relative;
+  z-index: 2;
+}
+
+.scroll-foam {
+  position: absolute;
+  z-index: 1;
+  top: -185px;
+  left: 50%;
+  width: 100vw;
+  height: 500px;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.scroll-foam__bank {
+  position: absolute;
+  inset: 0;
+}
+
+.scroll-foam span {
+  --bubble-opacity: 0.8;
+  --bubble-x: 0px;
+  position: absolute;
+  display: block;
+  width: var(--bubble-size);
+  height: var(--bubble-size);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.95) 0 5%, transparent 6%),
+    radial-gradient(circle at 34% 33%, rgba(255, 255, 255, 0.72) 0 10%, transparent 11%),
+    radial-gradient(circle at 64% 68%, rgba(169, 227, 235, 0.6) 0 12%, rgba(182, 217, 92, 0.16) 52%, rgba(255, 255, 255, 0.52) 76%, rgba(169, 227, 235, 0.2) 100%);
+  box-shadow:
+    inset -10px -12px 22px rgba(169, 227, 235, 0.3),
+    inset 8px 8px 18px rgba(255, 255, 255, 0.72),
+    0 18px 42px rgba(35, 75, 72, 0.08);
+  transform: translate3d(0, 180px, 0) scale(0.18);
+  will-change: transform, opacity;
+}
+
+.scroll-foam.is-visible span {
+  animation: foam-bubble-rise 2.35s cubic-bezier(0.2, 0.74, 0.28, 1) both;
+  animation-delay: var(--bubble-delay);
+}
+
+.scroll-foam span:nth-child(1) { --bubble-size: 94px; --bubble-delay: 0.02s; --bubble-x: -22px; left: -1%; top: 214px; }
+.scroll-foam span:nth-child(2) { --bubble-size: 35px; --bubble-delay: 0.15s; --bubble-x: 16px; left: 6%; top: 288px; }
+.scroll-foam span:nth-child(3) { --bubble-size: 58px; --bubble-delay: 0.31s; --bubble-x: -12px; left: 12%; top: 235px; }
+.scroll-foam span:nth-child(4) { --bubble-size: 124px; --bubble-delay: 0.08s; --bubble-x: 28px; left: 18%; top: 305px; }
+.scroll-foam span:nth-child(5) { --bubble-size: 42px; --bubble-delay: 0.48s; --bubble-x: -18px; left: 29%; top: 225px; }
+.scroll-foam span:nth-child(6) { --bubble-size: 78px; --bubble-delay: 0.22s; --bubble-x: 18px; left: 34%; top: 300px; }
+.scroll-foam span:nth-child(7) { --bubble-size: 28px; --bubble-delay: 0.62s; --bubble-x: -10px; left: 42%; top: 245px; }
+.scroll-foam span:nth-child(8) { --bubble-size: 110px; --bubble-delay: 0.12s; --bubble-x: 22px; left: 47%; top: 290px; }
+.scroll-foam span:nth-child(9) { --bubble-size: 52px; --bubble-delay: 0.38s; --bubble-x: -20px; left: 57%; top: 220px; }
+.scroll-foam span:nth-child(10) { --bubble-size: 82px; --bubble-delay: 0.2s; --bubble-x: 17px; left: 63%; top: 312px; }
+.scroll-foam span:nth-child(11) { --bubble-size: 31px; --bubble-delay: 0.56s; --bubble-x: -8px; left: 71%; top: 232px; }
+.scroll-foam span:nth-child(12) { --bubble-size: 128px; --bubble-delay: 0.04s; --bubble-x: 26px; left: 75%; top: 298px; }
+.scroll-foam span:nth-child(13) { --bubble-size: 57px; --bubble-delay: 0.43s; --bubble-x: -15px; left: 85%; top: 232px; }
+.scroll-foam span:nth-child(14) { --bubble-size: 96px; --bubble-delay: 0.17s; --bubble-x: 20px; left: 91%; top: 305px; }
+.scroll-foam span:nth-child(15) { --bubble-size: 36px; --bubble-delay: 0.69s; --bubble-x: -12px; left: 97%; top: 250px; }
+.scroll-foam span:nth-child(16) { --bubble-size: 25px; --bubble-delay: 0.74s; --bubble-x: 12px; left: 24%; top: 330px; }
+.scroll-foam span:nth-child(17) { --bubble-size: 23px; --bubble-delay: 0.82s; --bubble-x: -10px; left: 55%; top: 344px; }
+.scroll-foam span:nth-child(18) { --bubble-size: 27px; --bubble-delay: 0.77s; --bubble-x: 14px; left: 88%; top: 350px; }
+
+@keyframes foam-bubble-rise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 180px, 0) scale(0.18);
+  }
+  18% {
+    opacity: var(--bubble-opacity);
+  }
+  62% {
+    opacity: 0.68;
+    transform: translate3d(var(--bubble-x), -5px, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--bubble-x), -185px, 0) scale(1.06);
+  }
 }
 
 .works__intro > p:last-child {
@@ -2386,5 +2475,10 @@ dd {
   .hero-pair-mark span,
   .hero-pair-mark i {
     animation: none !important;
+  }
+
+  .scroll-foam span {
+    animation: none !important;
+    opacity: 0 !important;
   }
 }
