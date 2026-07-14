@@ -1,6 +1,5 @@
 import ScrollFoam from "./ScrollFoam";
 import SectionMotion from "./SectionMotion";
-import JourneyMotion from "./JourneyMotion";
 
 const services = [
   {
@@ -49,17 +48,10 @@ const faqs = [
   ["エアコンは取付と清掃を一緒に頼めますか？", "機種や設置状況を確認したうえでご案内します。写真があると、よりスムーズに確認できます。"],
 ];
 
-const ambientBubbleCounts = {
-  message: 2,
-  services: 3,
-  works: 1,
-  flow: 2,
-} as const;
-
-function AmbientBubbles({ variant }: { variant: keyof typeof ambientBubbleCounts }) {
+function AmbientBubbles({ variant }: { variant: "message" | "services" | "works" | "flow" | "faq" }) {
   return (
     <div className={`ambient-bubbles ambient-bubbles--${variant}`} aria-hidden="true">
-      {Array.from({ length: ambientBubbleCounts[variant] }, (_, index) => <span key={index} />)}
+      <span /><span /><span /><span />
     </div>
   );
 }
@@ -68,7 +60,6 @@ export default function Home() {
   return (
     <main id="top">
       <SectionMotion />
-      <JourneyMotion />
       <section className="hero" aria-labelledby="hero-title">
         <img
           className="hero__photo"
@@ -136,9 +127,8 @@ export default function Home() {
 
       <ScrollFoam />
 
-      <section className="message section-shell" id="about" data-reveal="message">
+      <section className="message section-shell" id="about">
         <AmbientBubbles variant="message" />
-        <div className="message-stream" aria-hidden="true"><span /><i /><i /></div>
         <div className="message__side">
           <p className="eyebrow">OUR THOUGHTS</p>
           <span className="vertical-note">地域のすぐそばで、顔の見える仕事を。</span>
@@ -294,11 +284,6 @@ export default function Home() {
             alt="清掃作業について話す二人のスタッフ"
             loading="lazy"
           />
-          <div className="profile__perspectives" aria-hidden="true">
-            <span className="profile__perspective profile__perspective--technical"><b>TECHNICAL EYE</b><small>技術の目</small></span>
-            <span className="profile__perspective profile__perspective--living"><b>LIVING EYE</b><small>暮らしの目</small></span>
-            <i />
-          </div>
         </figure>
         <div className="profile__copy">
           <p className="eyebrow">ABOUT US</p>
@@ -318,6 +303,7 @@ export default function Home() {
       </section>
 
       <section className="faq section-shell" id="faq" aria-labelledby="faq-heading" data-reveal="faq">
+        <AmbientBubbles variant="faq" />
         <div className="faq__heading">
           <p className="eyebrow">FAQ</p>
           <h2 id="faq-heading">よくあるご質問</h2>
@@ -336,7 +322,7 @@ export default function Home() {
       <section className="contact" id="contact" aria-labelledby="contact-heading" data-reveal="contact">
         <div className="contact-wave" aria-hidden="true"><span /><i /></div>
         <div className="contact-bubbles" aria-hidden="true">
-          <span /><span /><span />
+          <span /><span /><span /><span /><span /><span />
         </div>
         <div className="contact__inner">
           <p className="eyebrow eyebrow--light">CONTACT</p>
