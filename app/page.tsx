@@ -256,7 +256,7 @@ export default function Home() {
       <section className="flow section-shell" aria-labelledby="flow-heading" data-reveal="flow">
         <div className="flow__heading">
           <p className="eyebrow">HOW IT WORKS</p>
-          <h2 id="flow-heading">ご相談から作業まで。</h2>
+          <h2 id="flow-heading">ご相談から、<br />作業まで。</h2>
         </div>
         <ol className="flow__list">
           {flow.map(([number, title, text]) => (

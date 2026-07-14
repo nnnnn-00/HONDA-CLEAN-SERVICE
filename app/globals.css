@@ -1311,9 +1311,10 @@ dd {
 
 .flow__list p {
   margin-top: 10px;
-  color: var(--ink-soft);
-  font-size: 12px;
-  line-height: 1.9;
+  color: #3f5d5a;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.85;
 }
 
 .profile {
@@ -1876,8 +1877,31 @@ dd {
   transition: transform 1.4s 0.24s cubic-bezier(0.22, 0.75, 0.22, 1);
 }
 
+.flow__list::after {
+  position: absolute;
+  z-index: 3;
+  top: -3px;
+  bottom: -3px;
+  left: -3px;
+  width: 8px;
+  content: "";
+  background:
+    linear-gradient(var(--aqua), var(--aqua)) left top / 8px 8px no-repeat,
+    linear-gradient(var(--lime), var(--lime)) left bottom / 8px 8px no-repeat;
+  pointer-events: none;
+}
+
 .motion-ready [data-reveal="flow"].is-inview .flow__list::before {
   transform: scaleY(1);
+}
+
+.motion-ready [data-reveal="flow"] .flow__list::after {
+  opacity: 0;
+  transition: opacity 0.38s 1.45s ease;
+}
+
+.motion-ready [data-reveal="flow"].is-inview .flow__list::after {
+  opacity: 1;
 }
 
 .flow__list li {
