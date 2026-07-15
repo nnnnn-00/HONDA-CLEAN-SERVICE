@@ -41,7 +41,7 @@ export default function ScrollFoam() {
 
     if (!curtain || !copy || bubbleElements.length !== bubbles.length) return;
 
-    const activeBubbleElements = bubbleElements.slice(0, window.innerWidth <= 760 ? 26 : bubbles.length);
+    const activeBubbleElements = bubbleElements.slice(0, window.innerWidth <= 760 ? 20 : bubbles.length);
 
     const animations = [
       curtain.animate(

@@ -2582,7 +2582,7 @@ dd {
 
   .message {
     display: block;
-    padding-block: 90px 100px;
+    padding-block: 90px 58px;
   }
 
   .cleaning-marquee__track {
@@ -2600,6 +2600,12 @@ dd {
     padding-inline: 26px;
     font-size: 20px;
     line-height: 1;
+  }
+
+  .cleaning-marquee span,
+  .cleaning-marquee i {
+    position: relative;
+    top: -2px;
   }
 
   .cleaning-marquee i {
@@ -2829,7 +2835,7 @@ dd {
     backdrop-filter: none;
   }
 
-  .scroll-foam__bubble:nth-child(n + 27) {
+  .scroll-foam__bubble:nth-child(n + 21) {
     display: none;
   }
 
