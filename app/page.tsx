@@ -1,6 +1,8 @@
 import ScrollFoam from "./ScrollFoam";
 import SectionMotion from "./SectionMotion";
 import WipeComparison from "./WipeComparison";
+import ServiceStage from "./ServiceStage";
+import JourneyBubble from "./JourneyBubble";
 
 const services = [
   {
@@ -61,6 +63,7 @@ export default function Home() {
   return (
     <main id="top">
       <SectionMotion />
+      <JourneyBubble />
       <section className="hero" aria-labelledby="hero-title">
         <img
           className="hero__photo"
@@ -179,25 +182,7 @@ export default function Home() {
           <p className="section-heading__note">二人の視点をひとつにつなぎ、場所ごとに最適な方法で整えます。</p>
         </div>
 
-        {services.map((service, index) => (
-          <article
-            className={service.className}
-            data-reveal="service"
-            id={index === 0 ? "move-cleaning" : index === 1 ? "regular-cleaning" : "aircon-cleaning"}
-            key={service.number}
-          >
-            <figure className="service-photo">
-              <img src={service.image} alt={service.alt} loading="lazy" />
-            </figure>
-            <div className="service-copy" data-number={service.number}>
-              <p className="service-copy__number">SERVICE <b>{service.number}</b></p>
-              <h3>{service.title}</h3>
-              <p className="service-copy__lead">{service.lead}</p>
-              <p className="service-copy__body">{service.body}</p>
-              <a className="text-link" href="#contact">このサービスを相談する <span>→</span></a>
-            </div>
-          </article>
-        ))}
+        <ServiceStage services={services} />
       </section>
 
       <section className="works section-shell" id="works" aria-labelledby="works-heading" data-reveal="wipe">
@@ -234,9 +219,12 @@ export default function Home() {
             <div className="fukuoka-shape">
               <img src="/fukuoka-map.png" alt="福岡県の地図シルエット" />
               <span className="map-base">
+                <span className="map-drop" aria-hidden="true" />
                 <i aria-hidden="true" />
               </span>
             </div>
+            <span className="map-coverage-label map-coverage-label--city">福岡市</span>
+            <span className="map-coverage-label map-coverage-label--near">近郊エリア</span>
             <p>FUKUOKA PREFECTURE</p>
             <span className="map-route-tail" aria-hidden="true" />
           </div>
@@ -303,7 +291,10 @@ export default function Home() {
       </section>
 
       <section className="contact" id="contact" aria-labelledby="contact-heading" data-reveal="contact">
-        <div className="contact-wave" aria-hidden="true"><span /><i /></div>
+        <div className="contact-wave" aria-hidden="true">
+          <span /><i />
+          <div className="contact-gather"><b /><b /><b /><b /></div>
+        </div>
         <div className="contact-bubbles" aria-hidden="true">
           <span /><span /><span /><span /><span /><span />
         </div>
