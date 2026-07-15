@@ -80,8 +80,15 @@ export default function ServiceStage({ services }: ServiceStageProps) {
           ))}
           <span className="service-stage__wash" key={activeIndex} aria-hidden="true" />
           <div className="service-stage__visual-meta" aria-hidden="true">
-            <span>0{activeIndex + 1}</span>
-            <p>{services[activeIndex]?.title}</p>
+            <div>
+              <span>0{activeIndex + 1} / 03</span>
+              <p>{services[activeIndex]?.title}</p>
+            </div>
+            <div className="service-stage__progress">
+              {services.map((service, index) => (
+                <i className={index <= activeIndex ? "is-passed" : ""} key={service.number} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -97,7 +104,7 @@ export default function ServiceStage({ services }: ServiceStageProps) {
               <img src={service.image} alt={service.alt} loading="lazy" />
             </figure>
             <div className="service-stage__copy" data-number={service.number}>
-              <p className="service-stage__number">SERVICE <b>{service.number}</b></p>
+              <p className="service-stage__number"><span>SERVICE</span><b>{service.number}</b><i /></p>
               <h3>{service.title}</h3>
               <p className="service-stage__lead">{service.lead}</p>
               <p className="service-stage__body">{service.body}</p>

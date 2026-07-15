@@ -131,7 +131,7 @@ export default function Home() {
 
       <ScrollFoam />
 
-      <section className="message section-shell" id="about">
+      <section className="message section-shell" id="about" data-reveal="message">
         <AmbientBubbles variant="message" />
         <div className="message__side">
           <p className="eyebrow">OUR THOUGHTS</p>
@@ -172,7 +172,7 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="services" id="service" aria-labelledby="service-heading">
+      <section className="services" id="service" aria-labelledby="service-heading" data-reveal="services">
         <AmbientBubbles variant="services" />
         <div className="section-heading section-shell">
           <div>
