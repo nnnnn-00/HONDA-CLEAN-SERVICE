@@ -22,6 +22,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   color: var(--ink);
   background: var(--paper);
   font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
@@ -51,7 +52,7 @@ img {
 
 main {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 h1,
@@ -819,7 +820,7 @@ dd {
 .service-stage__visual {
   position: relative;
   height: 100%;
-  overflow: hidden;
+  overflow: visible;
   background: var(--aqua-light);
   border-radius: 0 150px 0 0;
 }
@@ -1708,14 +1709,14 @@ dd {
 }
 
 .motion-ready [data-reveal="map"].is-inview .map-drop {
-  animation: map-drop-land 0.95s 0.3s cubic-bezier(0.18, 0.76, 0.22, 1) both;
+  animation: map-drop-land 4.8s 0.3s cubic-bezier(0.18, 0.76, 0.22, 1) infinite;
 }
 
 @keyframes map-drop-land {
   0% { opacity: 0; transform: translate(-50%, -118px) rotate(45deg) scale(0.72); }
-  18% { opacity: 0.92; }
-  76% { opacity: 0.92; transform: translate(-50%, -22px) rotate(45deg) scale(1); }
-  100% { opacity: 0; transform: translate(-50%, -8px) rotate(45deg) scale(0.45); }
+  4% { opacity: 0.92; }
+  18% { opacity: 0.92; transform: translate(-50%, -22px) rotate(45deg) scale(1); }
+  24%, 100% { opacity: 0; transform: translate(-50%, -8px) rotate(45deg) scale(0.45); }
 }
 
 .map-coverage-label {
@@ -2575,7 +2576,7 @@ dd {
 }
 
 .motion-ready [data-reveal="map"].is-inview .local-map::before {
-  animation: map-scan 1.25s 0.85s ease-out both;
+  animation: map-scan 6.4s 0.85s ease-out infinite;
 }
 
 .motion-ready [data-reveal="map"] .map-route-tail {
@@ -2592,9 +2593,9 @@ dd {
 
 @keyframes map-scan {
   0% { left: -20%; opacity: 0; }
-  18% { opacity: 0.85; }
-  82% { opacity: 0.72; }
-  100% { left: 108%; opacity: 0; }
+  4% { opacity: 0.85; }
+  17% { left: 108%; opacity: 0.72; }
+  22%, 100% { left: 108%; opacity: 0; }
 }
 
 .flow__list {

@@ -18,9 +18,16 @@ export default function SectionMotion() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-inview");
-          observer.unobserve(entry.target);
+          const target = entry.target as HTMLElement;
+          const shouldReplay = target.dataset.reveal === "map";
+
+          if (entry.isIntersecting) {
+            target.classList.add("is-inview");
+            if (!shouldReplay) observer.unobserve(target);
+            return;
+          }
+
+          if (shouldReplay) target.classList.remove("is-inview");
         });
       },
       { rootMargin: "0px 0px -14%", threshold: 0.12 },

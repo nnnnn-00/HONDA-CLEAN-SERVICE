@@ -293,10 +293,6 @@ export default function Home() {
       <section className="contact" id="contact" aria-labelledby="contact-heading" data-reveal="contact">
         <div className="contact-wave" aria-hidden="true">
           <span /><i />
-          <div className="contact-gather"><b /><b /><b /><b /></div>
-        </div>
-        <div className="contact-bubbles" aria-hidden="true">
-          <span /><span /><span /><span /><span /><span />
         </div>
         <div className="contact__inner">
           <p className="eyebrow eyebrow--light">CONTACT</p>
